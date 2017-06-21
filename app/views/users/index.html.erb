@@ -2,7 +2,7 @@
 <%= link_to "New Message", new_user_message_path(current_user), class: "btn btn-secondary" %>
 <%= link_to "Add Friends", alluser_path, class: "btn btn-secondary" %>
 <%= link_to "Sent Messages", sent_path, class: "btn btn-secondary" %>
-<div style="margin-top: 10px;">
+<div>
 	<table class="table">
 	<thead class="thead thead-default">
 		<th>Message</th>
@@ -13,12 +13,11 @@
 		<tr>
 			<% if message.read? %>
 			<td><%= message.title %></td>
-			<td>Already Read</td>
+			<td><%= link_to "View", message_show_path(:id => message.id), class: "btn btn-secondary"%></td>
 			<% else %>
 			<td><b><%= message.title %></b></td>
 			<td><%= link_to "Read", message_show_path(:id => message.id), class: "btn btn-secondary"%></td>
-			<% end %>
-			
+			<% end %>			
 		</tr>
 		<% end %>
 	</tbody>
