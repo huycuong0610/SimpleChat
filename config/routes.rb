@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/message/show' =>'messages#show'
   get '/show' => 'users#show'
   get '/sent' => 'users#sent'
-  get '/alluser'	=> 'users#all_user'
+  get '/friends'	=> 'users#all_user'
   root "users#index"
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
