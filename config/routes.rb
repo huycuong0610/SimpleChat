@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'friendship/create'
+  get 'friend_ship/create'
 
-  get 'friendship/destroy'
+  get 'friend_ship/destroy'
 
   resources :sessions, only: [:new, :create]
   resources :users do
   	resources :messages
   end
-  delete '/logout' => 'sessions#destroy'
+  get '/logout' => 'sessions#destroy'
   get '/message/show' =>'messages#show'
   get '/show' => 'users#show'
   get '/sent' => 'users#sent'

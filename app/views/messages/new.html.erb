@@ -5,15 +5,13 @@
         <span class=" white-text"> <%= @message.errors.full_messages.to_sentence %></span>
     </div>
   <% end %>
-<div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input">Recipient</label>
-        </div>
-      </div>
+ <div class="form-group">
+  	<%= f.label :recipient_id, class: "form-control-label" %>
+    <div class="input-field">
+    	<%= f.select(:recipient_id, @users.all.collect{|u| [u.name, u.id]}, {prompt: "Select friend"}, {:multiple => true})%>
     </div>
+
+    
   </div>
   <div class="form-group">
   	<%= f.label :title, class: "form-control-label" %>
@@ -29,7 +27,7 @@
 <% end %>
 
 <script>
- $('input.autocomplete').autocomplete({
+ jQuery('input.autocomplete').autocomplete({
     data: {
       "Apple": null,
       "Microsoft": null,
@@ -40,5 +38,9 @@
       // Callback function when value is autcompleted.
     },
     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+
+  $(document).ready(function() {
+    $('select').material_select();
   });
 </script>

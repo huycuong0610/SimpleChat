@@ -15,9 +15,9 @@
 			<td><%= user.email %></td>
 			<td><%= time_ago_in_words user.created_at%></td>
 			<% if current_user.friends.exists?(user) %>
-			<td><%= link_to "Remove friend", friendship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "btn btn-secondary" %></td>
+			<td><%= link_to "Remove friend", friend_ship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "btn btn-secondary" %></td>
 			<% else %>
-			<td><%= link_to "Add friend", friendship_create_path(:friend_id => user), :method => :get, class: "btn btn-secondary" %></td>
+			<td><%= link_to "Add friend", friend_ship_create_path(:friend_id => user), :method => :get, class: "btn btn-secondary" %></td>
 			<% end %>
 		</tr>
 		<% end %>

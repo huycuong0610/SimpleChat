@@ -7,5 +7,19 @@ class User < ApplicationRecord
 	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+	def received_messages
+		Message.where(recipient_id: self)
+	end
 
+	def sent_messages
+		Message.where(sender_id: self)
+	end
+
+	def lastest_received_messages(limit)
+		received_messages.order(created_at: :desc).limit(limit)
+	end
+
+	def unread_messages
+		received_messages.unread
+	end
 end

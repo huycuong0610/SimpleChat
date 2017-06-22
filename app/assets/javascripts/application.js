@@ -1,4 +1,5 @@
-
 //= require jquery
-//= require materialize
+//= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui
+//= require materialize
