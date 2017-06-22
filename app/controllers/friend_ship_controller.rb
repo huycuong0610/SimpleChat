@@ -15,10 +15,10 @@ class FriendShipController < ApplicationController
     end
 
     def destroy
-        @friend_id = params[:friend_id]
-        @friend_ship = current_user.friendships.build(:friend_id => @friend_id)
+        @friend_ship = current_user.friendships.find(params[:id])
+        @friend = User.find(@friend_ship.friend_id) 
         if @friend_ship.destroy
-            flash[:notice] = "Removed Friend"
+            flash[:notice] = "Removed #{@friend.name} from your friend list already"
             redirect_to friends_path
         else
             flash[:notice] = "Unable to remove friendship. Please contact administrator"
