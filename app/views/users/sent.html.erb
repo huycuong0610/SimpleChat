@@ -16,7 +16,7 @@
 			<td><%= User.find_by_id(message.recipient_id).name %></td>
 			<td><%= time_ago_in_words message.created_at %></td>
 			<td><%= message.title %></td>
-			<td><%= image_tag message.image_url.to_s if message.image? %></td>
+			<td><%= image_tag message.image.to_s if message.image? %></td>
 			<% if message.read? %>
 				<td><%= message.read_at.strftime("%d %m %Y %I:%M%p") %></td>
 			<% else %>

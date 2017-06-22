@@ -14,11 +14,16 @@
 			<td><%= user.name %></td>
 			<td><%= user.email %></td>
 			<td><%= time_ago_in_words user.created_at%></td>
+			<td>
 			<% if current_user.friends.exists?(user) %>
-			<td><%= link_to "Remove friend", friend_ship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "btn btn-secondary" %></td>
-			<% else %>
-			<td><%= link_to "Add friend", friend_ship_create_path(:friend_id => user), :method => :get, class: "btn btn-secondary" %></td>
-			<% end %>
+			
+				<%= link_to "Remove friend", friend_ship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "btn btn-secondary" %>
+				<% else %>
+				<%= link_to "Add friend", friend_ship_create_path(:friend_id => user), :method => :get, class: "btn btn-secondary" %>
+				<% end %>
+
+				<%= link_to "Block", friend_ship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "waves-effect waves-light btn pink darken-1" %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
