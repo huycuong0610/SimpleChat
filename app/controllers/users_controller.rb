@@ -46,5 +46,21 @@ before_action :require_login, only: [:index, :show, :sent, :show_friend, :all_us
 		@message = Message.new
 	end
 
+	def block
+		Friendship.find_by(friend_id: params[:id], user_id: current_user_id)
+			.update_attributes(block: 1)
+		respond_to :js
+	end
+
+	def blocks
+		@blocks = current_user.blocks.page(params[:page])
+	end
+
+	def unblock
+		Friendship.find_by(friend_id: params[:id], user_id: current_user_id)
+			.update_attributes(block: nil)
+		respond_to :js
+	end
+
 
 end
