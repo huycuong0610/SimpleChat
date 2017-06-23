@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
   	resources :messages
   end
+  get 'auth/:provider/callback' => 'sessions#callback'
   get '/logout' => 'sessions#destroy'
   get '/message/show' =>'messages#show'
   get '/show' => 'users#show'
