@@ -1,32 +1,39 @@
 class SessionsController < ApplicationController
+  before_action :skip_login, only: [:new, :create]
+  before_action :require_login, only: [:destroy]
+
   def new
   end
 
   def create
-  	if @user = User.find_by(email: params[:email])
-  		if @user.authenticate(params[:password])
-  			session[:user_id] = @user.id
-  			redirect_to show_path, flash: {success: "Welcome back"}
-  		else
-  			redirect_to new_session_path, notice: "password is wrong"
-  		end
-  	else
-  		redirect_to new_session_path, notice: "Email not found"
-  	end
+    if authenticate
+      store_user_id(@user.id)
+      flash[:notice] = 'Login successfully'
+      redirect_to restore_path
+    else
+      flash.now[:alert] = 'Invalid email or password'
+      render :new
+    end
   end
 
   def callback
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
-    redirect_to root_path
+    if (user = FacebookAuthenticateService.new(env['omniauth.auth']).authenticate)
+      session[:user_id] = user.id
+      flash[:notice] = 'Login successfully'
+      redirect_to users_path
+    else
+      flash.now[:alert] = 'Can not login with facebook'
+      render :new
+    end
   end
 
   def destroy
-  	session[:user_id] = nil
-  	redirect_to new_session_path, notice: "Logged out"
+    clear_user_id
+    flash[:notice] = 'Logout successfully'
+    redirect_to new_sessions_path
   end
 
-	private
+  private
   def authenticate
     @user = User.find_by(email: params[:email])
     @user && @user.authenticate(params[:password])

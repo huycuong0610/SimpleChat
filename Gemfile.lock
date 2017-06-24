@@ -113,7 +113,7 @@ GEM
     omniauth (1.6.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
-    omniauth-facebook (3.0.0)
+    omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
@@ -213,7 +213,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   materialize-sass
   omniauth
-  omniauth-facebook (~> 3.0.0)
+  omniauth-facebook (~> 4.0.0)
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0)

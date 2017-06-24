@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users do
   	resources :messages
   end
-  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback' => 'sessions#callback'
     get 'auth/failure', to: redirect('/')
   get '/logout' => 'sessions#destroy'
   get '/message/show' =>'messages#show'
