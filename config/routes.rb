@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   get 'friend_ship/create'
 
   get 'friend_ship/destroy'
+  get 'users/block'
+  get 'users/unblock'
 
   resources :sessions, only: [:new, :create]
   resources :users do
   	resources :messages
   end
   get 'auth/:provider/callback' => 'sessions#callback'
-    get 'auth/failure', to: redirect('/')
+  get 'auth/failure', to: redirect('/')
   get '/logout' => 'sessions#destroy'
   get '/message/show' =>'messages#show'
   get '/show' => 'users#show'

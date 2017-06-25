@@ -26,7 +26,12 @@
 				<%= link_to "Add friend", friend_ship_create_path(:friend_id => user), :method => :get, class: "btn btn-secondary" %>
 				<% end %>
 
-				<%= link_to "Block", friend_ship_destroy_path(:id => current_user.friendships.find_by_friend_id(user)), class: "waves-effect waves-light btn pink darken-1" %>
+
+				<% if Friendship.find_by(friend_id: user, user_id: current_user.id).nil? || Friendship.find_by(friend_id: user, user_id: current_user.id).block == nil %>
+				<%= link_to "Block", users_block_path(:friend_id => user),  :method => :get, class: "waves-effect waves-light btn pink darken-1" %>
+				<% else %>
+				<%= link_to "UnBlock", users_unblock_path(:friend_id => user),  :method => :get, class: "waves-effect waves-light btn light-blue lighten-1" %>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>

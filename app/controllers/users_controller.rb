@@ -51,19 +51,22 @@ before_action :require_login, only: [:index, :show, :sent, :show_friend, :all_us
 	end
 
 	def block
-		Friendship.find_by(friend_id: params[:id], user_id: current_user_id)
-			.update_attributes(block: 1)
-		respond_to :js
+		@friend_ship = Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id)
+		@friend_ship.update_attributes(block: 1)
+		@friend = User.find(params[:friend_id]) 
+
+		flash[:notice] = "Block friend *#{@friend.name}* . You never receive any message from this user."
+		redirect_to friends_path
 	end
 
-	def blocks
-		@blocks = current_user.blocks.page(params[:page])
-	end
 
 	def unblock
-		Friendship.find_by(friend_id: params[:id], user_id: current_user_id)
-			.update_attributes(block: nil)
-		respond_to :js
+		@friend_ship = Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id)
+		@friend_ship.update_attributes(block: nil)
+		@friend = User.find(params[:friend_id]) 
+
+		flash[:notice] = "Unblock Block friend *#{@friend.name}*. You can receive message from this user."
+		redirect_to friends_path
 	end
 
 

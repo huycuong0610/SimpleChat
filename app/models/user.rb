@@ -17,7 +17,7 @@ class User < ApplicationRecord
 	end
 
 	def lastest_received_messages(limit)
-		received_messages.where('sender_id NOT IN (?)', block_relations.select(:sender_id)).order(created_at: :desc).limit(limit)
+		received_messages.where('sender_id NOT IN (?)', block_relations.select(:friend_id)).order(created_at: :desc).limit(limit)
 	end
 
 	def unread_messages
