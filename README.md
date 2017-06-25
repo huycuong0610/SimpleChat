@@ -6,7 +6,7 @@ Submitted by: **Cuong Nguyen**
 
 Time spent: **30** hours
 
-URL: ****
+URL: https://cuongsimplechat.herokuapp.com/
 
 ## User Stories
 
