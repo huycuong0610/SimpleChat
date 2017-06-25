@@ -4,7 +4,7 @@
 
 Submitted by: **Cuong Nguyen**
 
-Time spent: **30** hours
+Time spent: **32** hours
 
 URL: https://cuongsimplechat.herokuapp.com/
 
