@@ -39,7 +39,7 @@ The following **optional** functionality is complete:
 The following **additional** features are implemented:
 
 * [ x ] Material Design.
-* [ x ] User can edit avatar.
+* [ x ] User can get avatar when login with FB. 
 
 ## Video Walkthrough 
 
