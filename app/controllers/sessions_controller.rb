@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
 
   def create
     if authenticate
-      store_user_id(@user.id)
+      session[:user_id] = @user.id
       flash[:notice] = 'Login successfully'
-      redirect_to restore_path
+      redirect_to root_path
     else
       flash.now[:alert] = 'Invalid email or password'
       render :new
@@ -28,9 +28,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    clear_user_id
+    session[:user_id] = nil
     flash[:notice] = 'Logout successfully'
-    redirect_to new_sessions_path
+    redirect_to root_path
   end
 
   private

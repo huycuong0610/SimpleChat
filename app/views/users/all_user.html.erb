@@ -2,6 +2,7 @@
 <table class="table">
 	<thead class="thead thead-default">
 		<tr>
+			<th>Avatar</th>
 			<th>Name</th>
 			<th>Email</th>
 			<th>Create at</th>
@@ -11,6 +12,9 @@
 	<tbody>
 		<% @users.each do |user| %>
 		<tr>
+			<td><%= user.avatar ? image_tag(user.avatar, height: 36, width: 36,
+                         style: 'vertical-align: sub', class: 'circle') : image_tag('http://vipei.ca/img/default_avatar.jpg', height: 36, width: 36,
+                         style: 'vertical-align: sub', class: 'circle') %></td>
 			<td><%= user.name %></td>
 			<td><%= user.email %></td>
 			<td><%= time_ago_in_words user.created_at%></td>

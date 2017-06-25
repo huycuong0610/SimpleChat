@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	before_action :require_login, only: [:new, :create]
-
+	
 	def new
 		@user = current_user
 		@users = current_user.friends
@@ -14,6 +14,8 @@ class MessagesController < ApplicationController
 		@recipients.each do |r|
 		@message = current_user.sent_messages.build(:recipient_id => r, :title => @title, :image => @image)
 		@message.save
+		@user_receive = User.find_by_id(r)
+		UserNotifier.send_message_email(@user_receive).deliver
 		end
 		if @message.errors.any?
 			flash[:error] = "Can not create message, title and recipient can not empty"
@@ -29,6 +31,7 @@ class MessagesController < ApplicationController
 		if !@message.read? && current_user == @message.recipient
 			@message.mark_as_read!
 			redirect_to show_path
+			
 		end
 	end
 

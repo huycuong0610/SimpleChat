@@ -10,6 +10,9 @@ before_action :require_login, only: [:index, :show, :sent, :show_friend, :all_us
 		@user = User.new
 	end
 
+	def edit
+  	end
+
     def create 
         @user = User.new user_params
         if @user.save
