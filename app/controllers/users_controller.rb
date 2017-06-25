@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 before_action :require_login, only: [:index, :show, :sent, :show_friend, :all_user]
 	def index
 		#@users = User.all
-		@messages = Message.all
+		@messages = current_user.lastest_received_messages(10)
 	end
+
 
 	def new
 		@user = User.new

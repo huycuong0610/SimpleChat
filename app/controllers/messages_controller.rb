@@ -31,7 +31,6 @@ class MessagesController < ApplicationController
 		if !@message.read? && current_user == @message.recipient
 			@message.mark_as_read!
 			redirect_to show_path
-			
 		end
 	end
 

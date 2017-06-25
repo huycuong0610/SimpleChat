@@ -13,7 +13,7 @@
 		<tr>
 			<% if message.read? %>
 			<td><%= message.title %></td>
-			<td><%= link_to "View", message_show_path(:id => message.id), class: "btn btn-secondary"%></td>
+			<td>Read Already</td>
 			<% else %>
 			<td><b><%= message.title %></b></td>
 			<td><%= link_to "Read", message_show_path(:id => message.id), class: "btn btn-secondary"%></td>
