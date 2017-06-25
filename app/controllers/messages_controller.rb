@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
 		@message = current_user.sent_messages.build(:recipient_id => r, :title => @title, :image => @image)
 		@message.save
 		@user_receive = User.find_by_id(r)
-		UserNotifier.send_message_email(@user_receive).deliver
+		UserNotifier.send_message_email(@user).deliver
 		end
 		if @message.errors.any?
 			flash[:error] = "Can not create message, title and recipient can not empty"
